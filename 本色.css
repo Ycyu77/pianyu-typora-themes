@@ -1,0 +1,264 @@
+@charset "UTF-8";
+
+@import url("./pianyu-typora-themes/base.css");
+
+/* 片羽 Typora V0.2 · 本色
+   昼夜本色：深炭黑纸面、白字骨架，彩色渐变只作极小面积点睛。 */
+:root {
+  --pianyu-paper: #181818;
+  --pianyu-paper-raised: #242424;
+  --pianyu-title: #ffffff;
+  --pianyu-editorial: #f0f0f0;
+  --pianyu-text: #e7e7e7;
+  --pianyu-muted: #969696;
+  --pianyu-line: #363636;
+  --pianyu-block: #242424;
+  --pianyu-deep: #181818;
+  --pianyu-deep-text: #f4f4f4;
+  --pianyu-checkbox: var(--pianyu-accent);
+  --bg-color: #181818;
+  --text-color: #e7e7e7;
+  --rawblock-edit-panel-bd: #242424;
+  --pianyu-accent: #d99aa7;
+  --pianyu-accent-soft: rgba(217, 154, 167, 0.18);
+  --pianyu-outline-hover: rgba(217, 154, 167, 0.08);
+  --pianyu-outline-active: rgba(217, 154, 167, 0.14);
+  --pianyu-texture-opacity: 0;
+  --pianyu-deep-gradient: none;
+  --pianyu-spectrum: linear-gradient(90deg, #e98b68, #e7b65f, #93c77e, #72bec9, #7d9fd8, #9b89cf, #dda0bc);
+  --pianyu-bense-hairline: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 18%, rgba(255, 255, 255, 0.12) 82%, transparent 100%);
+  --pianyu-bense-short-line: linear-gradient(
+    90deg,
+    #e98b68 0%,
+    #e7b65f 12%,
+    #93c77e 24%,
+    #72bec9 38%,
+    #7d9fd8 52%,
+    #9b89cf 64%,
+    #dda0bc 73%,
+    rgba(255, 255, 255, 0.15) 86%,
+    transparent 100%
+  );
+  --pianyu-bense-vertical-line: linear-gradient(
+    180deg,
+    #e98b68 0%,
+    #e7b65f 8%,
+    #93c77e 16%,
+    #72bec9 26%,
+    #7d9fd8 36%,
+    #9b89cf 46%,
+    #dda0bc 54%,
+    rgba(221, 160, 188, 0.78) 62%,
+    rgba(221, 160, 188, 0.58) 70%,
+    rgba(221, 160, 188, 0.38) 79%,
+    rgba(221, 160, 188, 0.2) 88%,
+    rgba(221, 160, 188, 0.08) 95%,
+    transparent 100%
+  );
+  --pianyu-bense-pink-divider: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(217, 154, 167, 0.08) 18%,
+    rgba(217, 154, 167, 0.26) 50%,
+    rgba(217, 154, 167, 0.08) 82%,
+    transparent 100%
+  );
+}
+
+body::before {
+  mix-blend-mode: screen;
+}
+
+#write a:hover,
+#write a:focus-visible {
+  color: color-mix(in srgb, var(--pianyu-accent) 78%, var(--pianyu-title) 22%);
+  text-decoration-color: var(--pianyu-accent);
+}
+
+.md-rawblock-on-edit > .md-rawblock-tooltip,
+.md-rawblock:hover > .md-rawblock-container,
+.md-rawblock:hover > .md-rawblock-tooltip,
+.md-rawblock-control:not(.md-rawblock-tooltip) {
+  background: transparent;
+}
+
+.md-htmlblock .CodeMirror,
+.md-htmlblock .CodeMirror-scroll {
+  background: transparent;
+  color: var(--pianyu-text);
+}
+
+#write blockquote {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding-left: 1.2em;
+}
+
+#write blockquote::before {
+  inset: 0 auto 0 0;
+  width: 1px;
+  height: auto;
+  background: var(--pianyu-bense-vertical-line);
+}
+
+#write table {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+#write thead tr {
+  background-image: var(--pianyu-bense-short-line);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 54% 1px;
+}
+
+#write th {
+  border: 0;
+  background: transparent;
+  color: var(--pianyu-title);
+}
+
+#write tbody tr + tr {
+  background-image: var(--pianyu-bense-hairline);
+}
+
+#write pre {
+  border: 0;
+  border-left: 1px solid;
+  border-image: var(--pianyu-bense-vertical-line) 1;
+  border-radius: 0;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+}
+
+/* 引用内的代码块交给外层引用保留唯一一条辅助线。 */
+#write blockquote pre,
+#write blockquote .md-fences {
+  border-left: 0;
+  border-image: none;
+}
+
+/* Typora 编辑代码块内部也使用 pre；渐变只能属于外层 md-fences，不能逐行叠加。 */
+#write .md-fences .CodeMirror,
+#write .md-fences .CodeMirror pre,
+#write .md-fences .CodeMirror-line,
+#write .md-fences .CodeMirror-code {
+  border: 0 !important;
+  border-image: none !important;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#write figure {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#write figure figcaption {
+  border: 0;
+  background: transparent;
+  background-image: var(--pianyu-bense-short-line);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 54% 1px;
+}
+
+#write hr {
+  background: var(--pianyu-bense-pink-divider);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% 1px;
+  opacity: 1;
+}
+
+#write mark {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--pianyu-title);
+  text-decoration: underline;
+  text-decoration-color: var(--pianyu-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+#write code {
+  padding-inline: 0.08em;
+  border-radius: 0;
+  background: transparent;
+  border-bottom: 1px solid color-mix(in srgb, white 20%, transparent);
+}
+
+#write pre code {
+  border-bottom: 0;
+}
+
+#write .task-list label {
+  color: var(--pianyu-text);
+}
+
+#write .footnotes {
+  border-left: 2px solid color-mix(in srgb, var(--pianyu-accent) 72%, transparent);
+  border-image: none;
+}
+
+/* 脚注索引是轻量的定位标记，不再使用 Typora 默认的灰色胶囊。 */
+#write sup.md-footnote {
+  padding: 0 0.12em;
+  border-radius: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--pianyu-muted) 78%, var(--pianyu-accent) 22%);
+  opacity: 0.78;
+}
+
+#write sup.md-footnote a,
+#write sup.md-footnote a:hover {
+  color: inherit;
+  background: transparent;
+}
+
+#write .chapter-body::before {
+  background: var(--pianyu-bense-vertical-line);
+}
+
+#write .task-list input[type="checkbox"],
+#write .md-task-list-item > input[type="checkbox"],
+#write .task-list-item input[type="checkbox"] {
+  border-color: color-mix(in srgb, white 42%, transparent);
+}
+
+#write .task-list input[type="checkbox"]:checked,
+#write .task-list input[type="checkbox"][checked],
+#write .md-task-list-item > input[type="checkbox"]:checked,
+#write .md-task-list-item > input[type="checkbox"][checked],
+#write .task-list-item input[type="checkbox"]:checked,
+#write .task-list-item input[type="checkbox"][checked] {
+  border-color: var(--pianyu-accent);
+  background: var(--pianyu-accent);
+}
+
+#write .task-list input[type="checkbox"]:checked::after,
+#write .task-list input[type="checkbox"][checked]::after,
+#write .md-task-list-item > input[type="checkbox"]:checked::after,
+#write .md-task-list-item > input[type="checkbox"][checked]::after,
+#write .task-list-item input[type="checkbox"]:checked::after,
+#write .task-list-item input[type="checkbox"][checked]::after {
+  border-color: var(--pianyu-deep-text);
+}
+
+#write .task-list .task-list-item-checkbox + span,
+#write .task-list .done {
+  color: var(--pianyu-muted);
+}
