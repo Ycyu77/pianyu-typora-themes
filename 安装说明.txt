@@ -1,18 +1,17 @@
-片羽 Typora 主题 
+片羽 Typora 主题
 
-运行主题只需要以下五项：
+请从 GitHub 仓库的 Release 页面下载完整压缩包。
+压缩包包含四个主题文件、共用样式、字体和许可证文件。
 
-  青瓷灰.css
-  烟岚紫.css
-  雨霁蓝.css
-  本色.css
-  pianyu-typora-themes/
+Release 页面：
+https://github.com/Ycyu77/pianyu-typora-themes/releases
 
 安装方法（macOS）：
 
-1. 打开 Typora，选择“偏好设置 → 外观 → 打开主题文件夹”。
-2. 将上面四个 .css 文件和 pianyu-typora-themes 文件夹一起复制进去。
-3. 重启 Typora，在主题菜单中选择片羽主题。
+1. 下载并解压 Release 中的完整压缩包。
+2. 打开 Typora，选择“偏好设置 → 外观 → 打开主题文件夹”。
+3. 将解压后的四个 .css 文件和 pianyu-typora-themes 文件夹一起复制进去。
+4. 重启 Typora，在主题菜单中选择片羽主题。
 
 注意：不要只复制 .css 文件。四个主题都通过 pianyu-typora-themes/base.css 读取共用排版和字体；缺少 pianyu-typora-themes 时，字体和部分样式会失效。
 
