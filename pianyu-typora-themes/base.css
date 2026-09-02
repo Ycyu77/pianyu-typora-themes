@@ -1,0 +1,845 @@
+@charset "UTF-8";
+
+/*
+  片羽 Typora V0.2 · 共用骨架
+  当前真源：
+  - 展示判断：寒蝉活仿宋 Regular
+  - 编辑声部：猫啃网风雅宋
+  - 正文骨架：思源黑体
+*/
+
+@font-face {
+  font-family: "Pianyu Body V02";
+  src: url("./fonts/SourceHanSansSC-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Pianyu Editorial V02";
+  src: url("./fonts/MaoKenWangFengYaSong.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Pianyu Display V02";
+  src: url("./fonts/ChillHuoFangSong_Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Pianyu Latin Sans V03";
+  src: url("./fonts/IBMPlexSans-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Pianyu Latin Sans V03";
+  src: url("./fonts/IBMPlexSans-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Pianyu Latin Sans V03";
+  src: url("./fonts/IBMPlexSans-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Pianyu Latin Display V03";
+  src: url("./fonts/CormorantGaramond-Variable.ttf") format("truetype-variations");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: block;
+}
+
+/* 中文标题与西文/数字混排时，使用更稳定的西文声部，避免 Cormorant 的装饰性字形干扰阅读。 */
+@font-face {
+  font-family: "Pianyu Display Mixed V03";
+  src: url("./fonts/ChillHuoFangSong_Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  unicode-range: U+2E80-2EFF, U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE30-FE4F;
+}
+
+@font-face {
+  font-family: "Pianyu Display Mixed V03";
+  src: url("./fonts/IBMPlexSans-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  unicode-range: U+0000-024F, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF;
+}
+
+/* 将真实斜体映射为编辑声部的正常样式：英文倾斜，中文仍保持猫啃网风雅宋直立。 */
+@font-face {
+  font-family: "Pianyu Latin Editorial V03";
+  src: url("./fonts/CormorantGaramond-Italic-Variable.ttf") format("truetype-variations");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Pianyu Latin Mono V03";
+  src: url("./fonts/IBMPlexMono-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Pianyu Latin Mono V03";
+  src: url("./fonts/IBMPlexMono-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+}
+
+:root {
+  --pianyu-font-body: "Pianyu Latin Sans V03", "Pianyu Body V02", sans-serif;
+  --pianyu-font-editorial: "Pianyu Latin Editorial V03", "Pianyu Editorial V02", serif;
+  --pianyu-font-display: "Pianyu Latin Display V03", "Pianyu Display V02", serif;
+  --pianyu-font-display-mixed: "Pianyu Display Mixed V03", sans-serif;
+  --pianyu-font-mono: "Pianyu Latin Mono V03", "Pianyu Body V02", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --pianyu-paper: #f2f5f3;
+  --pianyu-paper-raised: #f8faf9;
+  --pianyu-title: #171c1a;
+  --pianyu-editorial: #353d39;
+  --pianyu-text: #3d4641;
+  --pianyu-muted: #6e7a74;
+  --pianyu-line: #dde5e1;
+  --pianyu-block: #e9efed;
+  --pianyu-accent: #b86e7a;
+  --pianyu-accent-soft: rgba(184, 110, 122, 0.16);
+  --pianyu-deep: #2c3230;
+  --pianyu-deep-text: #eef6f3;
+  --pianyu-checkbox: var(--pianyu-deep);
+  --pianyu-component-radius: 6px;
+  --pianyu-spectrum: linear-gradient(90deg, #ef7a4a, #f2a93d, #7fbf6b, #58b6c9, #5b8fd6, #8e7bd0, #e59abf);
+  --pianyu-deep-gradient: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--pianyu-deep) 96%, white 4%) 0%,
+    var(--pianyu-deep) 52%,
+    color-mix(in srgb, var(--pianyu-deep) 95%, black 5%) 100%
+  );
+
+  --pianyu-content-width: 780px;
+  --pianyu-side-space: 56px;
+  --pianyu-h1: 36px;
+  --pianyu-h2: 27px;
+  --pianyu-h3: 22px;
+  --pianyu-body-size: 16px;
+  --pianyu-editorial-size: 20px;
+  --pianyu-small-size: 14px;
+  --pianyu-texture-opacity: 0;
+}
+
+html {
+  background: var(--pianyu-paper);
+}
+
+body {
+  margin: 0;
+  background-color: var(--pianyu-paper);
+  color: var(--pianyu-text);
+  font-family: var(--pianyu-font-body);
+  font-size: var(--pianyu-body-size);
+  line-height: 1.5;
+  letter-spacing: 0.025em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--pianyu-texture-opacity);
+  mix-blend-mode: multiply;
+  background-size: 160px 160px;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='1' seed='29' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+body.pianyu-texture-micrograin {
+  --pianyu-texture-opacity: 0.027;
+}
+
+#write,
+.typora-export .typora-export-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: calc(var(--pianyu-content-width) + 2 * (var(--pianyu-side-space) + 4px));
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 48px calc(var(--pianyu-side-space) + 4px) 76px;
+}
+
+#write h1,
+#write h2,
+#write h3 {
+  color: var(--pianyu-title);
+  font-family: var(--pianyu-font-display-mixed);
+  font-style: normal;
+  font-weight: 400;
+  font-variation-settings: "wght" 500;
+  font-synthesis: none;
+  letter-spacing: 0.006em;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+#write h1 {
+  margin: 0.88em 0 0.42em;
+  font-size: var(--pianyu-h1);
+  line-height: 1.18;
+}
+
+#write h2 {
+  margin: 1.02em 0 0.32em;
+  font-size: var(--pianyu-h2);
+  line-height: 1.24;
+}
+
+#write h3 {
+  margin: 0.98em 0 0.28em;
+  font-size: var(--pianyu-h3);
+  line-height: 1.3;
+}
+
+#write h4,
+#write h5,
+#write h6 {
+  margin: 1.24em 0 0.34em;
+  color: var(--pianyu-title);
+  font-family: var(--pianyu-font-body);
+  font-weight: 600;
+  line-height: 1.36;
+}
+
+#write h4 { font-size: 18px; }
+#write h5 { font-size: 16px; }
+#write h6 { font-size: 14px; color: var(--pianyu-muted); }
+
+#write p,
+#write li {
+  color: var(--pianyu-text);
+  font-family: var(--pianyu-font-body);
+  font-size: var(--pianyu-body-size);
+  line-height: 1.5;
+  letter-spacing: 0.025em;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  text-align-last: left;
+  text-wrap: pretty;
+}
+
+#write p {
+  margin: 0 0 0.9em;
+}
+
+#write strong {
+  color: var(--pianyu-title);
+  font-weight: 600;
+}
+
+#write .pianyu-editorial,
+#write .editorial,
+#write .annotation {
+  color: var(--pianyu-editorial);
+  font-family: var(--pianyu-font-editorial);
+  font-style: normal;
+  font-weight: 400;
+  font-synthesis: none;
+  letter-spacing: 0;
+}
+
+#write em {
+  color: color-mix(in srgb, var(--pianyu-text) 45%, var(--pianyu-accent) 55%);
+  font-family: var(--pianyu-font-body);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+}
+
+#write blockquote {
+  position: relative;
+  margin: 1.05em 0 1.1em;
+  padding: 1.05em 1.2em 1.12em;
+  border: 0;
+  border-radius: 0 0 var(--pianyu-component-radius) var(--pianyu-component-radius);
+  background-color: var(--pianyu-deep);
+  background-image: var(--pianyu-deep-gradient);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--pianyu-deep) 22%, transparent);
+  overflow: visible;
+}
+
+#write blockquote::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  border-radius: 0;
+  background: var(--pianyu-spectrum);
+  opacity: 0.9;
+}
+
+#write blockquote p,
+#write blockquote li {
+  margin: 0;
+  color: var(--pianyu-deep-text);
+  font-family: var(--pianyu-font-editorial);
+  font-size: var(--pianyu-editorial-size);
+  font-style: normal;
+  font-weight: 400;
+  font-synthesis: none;
+  line-height: 1.65;
+  letter-spacing: 0;
+}
+
+#write blockquote p + p {
+  margin-top: 0.72em;
+}
+
+#write ul,
+#write ol {
+  margin: 0.42em 0 0.78em;
+  padding-left: 1.65em;
+}
+
+#write li {
+  margin-bottom: 0.32em;
+}
+
+#write li::marker {
+  color: color-mix(in srgb, var(--pianyu-text) 58%, transparent);
+}
+
+#write hr {
+  height: 1px;
+  margin: 1.8em 0;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--pianyu-line) 18%, var(--pianyu-accent) 50%, var(--pianyu-line) 82%, transparent);
+  opacity: 0.62;
+}
+
+#write a {
+  color: var(--pianyu-text);
+  text-decoration-color: var(--pianyu-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+#write mark {
+  padding: 0.04em 0.18em;
+  border-radius: 2px;
+  background: var(--pianyu-accent-soft);
+  color: var(--pianyu-title);
+}
+
+#write table {
+  width: 100%;
+  margin: 1.2em 0 1.5em;
+  border: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--pianyu-component-radius);
+  background:
+    radial-gradient(140% 170% at 0% 0%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.18) 58%, rgba(210, 225, 220, 0.1) 100%),
+    rgba(248, 251, 250, 0.16);
+  box-shadow:
+    0 14px 34px color-mix(in srgb, var(--pianyu-deep) 16%, transparent),
+    inset 0 1px rgba(255, 255, 255, 0.76),
+    inset 0 -1px rgba(171, 190, 181, 0.1);
+  backdrop-filter: blur(18px) saturate(115%);
+  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  table-layout: auto;
+  overflow: hidden;
+}
+
+#write th,
+#write td {
+  padding: 10px 12px;
+  border: 0;
+  color: var(--pianyu-text);
+  font-family: var(--pianyu-font-body);
+  font-size: calc(var(--pianyu-body-size) - 2px);
+  line-height: 1.58;
+  text-align: left;
+  vertical-align: top;
+}
+
+#write th {
+  background-color: var(--pianyu-deep);
+  background-image: var(--pianyu-deep-gradient);
+  color: var(--pianyu-deep-text);
+  font-weight: 600;
+}
+
+#write td {
+  background: transparent;
+}
+
+#write tbody tr + tr {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--pianyu-deep) 8%, transparent) 17%,
+    color-mix(in srgb, var(--pianyu-deep) 8%, transparent) 83%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% 0.5px;
+}
+
+#write code,
+#write pre,
+#write pre code {
+  font-family: var(--pianyu-font-mono);
+}
+
+#write code {
+  padding: 0.12em 0.3em;
+  border-radius: 3px;
+  background: var(--pianyu-block);
+  color: var(--pianyu-title);
+  font-size: 0.82em;
+}
+
+#write pre {
+  margin: 1.1em 0 1.4em;
+  padding: 14px 16px;
+  overflow: auto;
+  border: 0;
+  border-radius: var(--pianyu-component-radius);
+  background-color: var(--pianyu-deep);
+  background-image: var(--pianyu-deep-gradient);
+  color: var(--pianyu-deep-text);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--pianyu-deep) 20%, transparent);
+  line-height: 1.6;
+}
+
+#write pre code {
+  padding: 0;
+  background: transparent;
+  color: var(--pianyu-deep-text);
+}
+
+#write pre code {
+  padding: 0;
+  background: transparent;
+  font-size: 16px;
+}
+
+#write img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+#write .footnote-line,
+#write .md-footnote,
+#write figcaption {
+  color: var(--pianyu-muted);
+  font-size: var(--pianyu-small-size);
+  line-height: 1.6;
+}
+
+.md-toc {
+  color: var(--pianyu-muted);
+}
+
+.md-toc-content {
+  padding: 0.2em 0;
+}
+
+/* 文档辅助信息：C「章节索引」 */
+#write .md-toc {
+  margin: 1.2em 0 1.5em;
+  color: var(--pianyu-text);
+}
+
+#write .toc-index {
+  display: grid;
+  gap: 1.35em;
+}
+
+#write .toc-group {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 18px;
+}
+
+#write .chapter-no {
+  padding-top: 0.04em;
+  color: var(--pianyu-title);
+  font-family: var(--pianyu-font-body);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+#write .chapter-body {
+  position: relative;
+  min-width: 0;
+  padding-left: 16px;
+}
+
+#write .chapter-body::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--pianyu-accent) 72%, transparent),
+    color-mix(in srgb, var(--pianyu-accent) 42%, transparent) 62%,
+    color-mix(in srgb, var(--pianyu-accent) 8%, transparent)
+  );
+}
+
+#write .chapter-title {
+  display: block;
+  color: var(--pianyu-title);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+#write .toc-items {
+  display: grid;
+  gap: 0.24em;
+  margin: 0.45em 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#write .toc-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  color: var(--pianyu-text);
+  font-size: 13px;
+  line-height: 1.55;
+  text-decoration: none;
+}
+
+#write .toc-page {
+  color: var(--pianyu-muted);
+}
+
+#write .task-list {
+  margin: 0.6em 0 1.05em;
+  padding-left: 0;
+  list-style: none;
+}
+
+#write .task-list li {
+  margin-bottom: 0.32em;
+}
+
+#write .task-list label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: color-mix(in srgb, var(--pianyu-deep) 82%, var(--pianyu-text) 18%);
+}
+
+#write .task-list input[type="checkbox"],
+#write .md-task-list-item > input[type="checkbox"],
+#write .task-list-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  margin: 4px 0 0;
+  flex: none;
+  border: 1px solid color-mix(in srgb, var(--pianyu-deep) 28%, var(--pianyu-line) 72%);
+  border-radius: 2px;
+  background: transparent;
+  accent-color: var(--pianyu-accent);
+}
+
+#write .task-list input[type="checkbox"]::before,
+#write .md-task-list-item > input[type="checkbox"]::before,
+#write .task-list-item input[type="checkbox"]::before {
+  content: none !important;
+  display: none !important;
+}
+
+#write .task-list input[type="checkbox"]:checked,
+#write .task-list input[type="checkbox"][checked],
+#write .md-task-list-item > input[type="checkbox"]:checked,
+#write .md-task-list-item > input[type="checkbox"][checked],
+#write .task-list-item input[type="checkbox"]:checked,
+#write .task-list-item input[type="checkbox"][checked] {
+  border-color: var(--pianyu-checkbox);
+  background: var(--pianyu-checkbox);
+}
+
+#write .task-list input[type="checkbox"]:checked::after,
+#write .task-list input[type="checkbox"][checked]::after,
+#write .md-task-list-item > input[type="checkbox"]:checked::after,
+#write .md-task-list-item > input[type="checkbox"][checked]::after,
+#write .task-list-item input[type="checkbox"]:checked::after,
+#write .task-list-item input[type="checkbox"][checked]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 4px;
+  margin: 0;
+  border: solid var(--pianyu-deep-text);
+  border-width: 0 0 1.5px 1.5px;
+  transform: translate(-50%, -65%) rotate(-45deg);
+}
+
+#write .task-list .task-list-item-checkbox + span,
+#write .task-list .done {
+  color: color-mix(in srgb, var(--pianyu-deep) 58%, var(--pianyu-muted) 42%);
+}
+
+#write figure {
+  margin: 1.1em 0 1.6em;
+  overflow: hidden;
+  border-radius: var(--pianyu-component-radius);
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--pianyu-deep) 14%, transparent);
+}
+
+/*
+ * 原始 HTML 图片块：Typora 会在预览内容下方额外铺一层编辑面板。
+ * 面板的占位层、悬停层和 CodeMirror 滚动层必须一起清除，
+ * 只改图片本身无法消除这块“白板”。
+ */
+#write .md-htmlblock,
+#write .md-htmlblock-container,
+#write .md-rawblock-container,
+#write .md-rawblock-panel,
+#write .md-rawblock-control,
+#write .md-htmlblock-panel-placeholder,
+#write .md-htmlblock .CodeMirror,
+#write .md-htmlblock .CodeMirror-scroll,
+#write .md-htmlblock .CodeMirror-sizer,
+#write .md-htmlblock .CodeMirror-gutters,
+#write .md-htmlblock .CodeMirror-gutter-filler,
+#write .md-htmlblock .CodeMirror-scrollbar-filler {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#write .md-rawblock-on-edit > .md-rawblock-tooltip,
+#write .md-rawblock:hover > .md-rawblock-container,
+#write .md-rawblock:hover > .md-rawblock-tooltip,
+#write .md-rawblock-control:not(.md-rawblock-tooltip) {
+  background: transparent !important;
+}
+
+#write .md-htmlblock-panel-placeholder {
+  display: none !important;
+}
+
+#write .md-htmlblock .CodeMirror-scroll {
+  overflow-x: hidden !important;
+}
+
+#write .md-htmlblock .CodeMirror-hscrollbar,
+#write .md-htmlblock .CodeMirror-scrollbar-filler,
+#write .md-htmlblock .CodeMirror-gutter-filler {
+  display: none !important;
+}
+
+/* Typora 用 figure 包住表格；阴影只留给表格本体，避免出现双层卡片。 */
+#write figure:has(> table) {
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#write figure img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  /* Typora 默认给编辑态图片加透明左右边框，会在深色图片两侧透出页面底色。 */
+  border: 0 !important;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+/* Typora 的图片常被放在 figure 内的段落中；段落默认下边距会在图片与图注之间留下缝隙。 */
+#write figure > p {
+  margin: 0;
+}
+
+#write figure > p > .md-image,
+#write figure > p > img:only-child {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+#write figure > p > .md-image img,
+#write figure > p > img:only-child {
+  width: 100%;
+  max-width: none;
+}
+
+/* 连续图片视为一个图组：相邻图片之间不重复叠加段落/figure 的外边距。 */
+#write figure:has(+ figure) {
+  margin-bottom: 0;
+}
+
+#write figure + figure {
+  margin-top: 0;
+}
+
+#write p:has(> .md-image:only-child):has(+ p > .md-image:only-child),
+#write p:has(> img:only-child):has(+ p > img:only-child) {
+  margin-bottom: 0;
+}
+
+#write figure figcaption {
+  margin: 0;
+  padding: 0.72em 1em 0.78em;
+  background: var(--pianyu-deep-gradient);
+  color: var(--pianyu-deep-text);
+}
+
+#write .footnotes {
+  margin-top: 2em;
+  padding: 0.18em 0 0.1em 1em;
+  border-left: 2px solid color-mix(in srgb, var(--pianyu-accent) 72%, transparent);
+}
+
+#write .footnotes p,
+#write .footnotes li {
+  color: var(--pianyu-muted);
+  font-size: var(--pianyu-small-size);
+  line-height: 1.65;
+}
+
+.outline-content,
+.file-list-item-file-name,
+.file-list-item-summary {
+  font-family: var(--pianyu-font-body);
+}
+
+/* 左侧大纲：保留 Typora 的层级缩进，只收紧节奏并弱化当前项高亮。 */
+#outline-content,
+.outline-content {
+  color: var(--pianyu-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+#outline-content .outline-item,
+.outline-content .outline-item {
+  min-height: 0;
+  margin: 1px 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 4px;
+  color: var(--pianyu-muted);
+  line-height: 1.45;
+}
+
+#outline-content .outline-item:hover,
+.outline-content .outline-item:hover {
+  color: var(--pianyu-title);
+  background: var(--pianyu-outline-hover, color-mix(in srgb, var(--pianyu-accent) 8%, transparent));
+}
+
+#outline-content .outline-item-active,
+.outline-content .outline-item-active {
+  color: var(--pianyu-title);
+  background: var(--pianyu-outline-active, color-mix(in srgb, var(--pianyu-accent) 12%, transparent));
+  box-shadow: none;
+}
+
+#outline-content .outline-label,
+.outline-content .outline-label {
+  display: inline-block;
+  padding-inline: 8px;
+  color: inherit;
+}
+
+#outline-content .outline-item-active .outline-label,
+.outline-content .outline-item-active .outline-label {
+  text-decoration: none;
+  font-weight: inherit;
+}
+
+#outline-content .outline-expander,
+.outline-content .outline-expander {
+  color: color-mix(in srgb, var(--pianyu-muted) 72%, transparent);
+}
+
+@media print {
+  body::before {
+    opacity: calc(var(--pianyu-texture-opacity) * 0.34);
+  }
+
+  #write,
+  .typora-export .typora-export-content {
+    max-width: none;
+    padding: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --pianyu-content-width: 100%;
+    --pianyu-side-space: 18px;
+    --pianyu-h1: 32px;
+    --pianyu-h2: 24px;
+    --pianyu-h3: 20px;
+    --pianyu-body-size: 16px;
+    --pianyu-editorial-size: 18px;
+  }
+
+  #write,
+  .typora-export .typora-export-content {
+    padding-top: 28px;
+    padding-bottom: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
